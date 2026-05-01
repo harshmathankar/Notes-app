@@ -25,7 +25,7 @@ def create_token(data: dict, expiry: timedelta= timedelta(minutes=30))->Token:
     """Generates a JWT access token with expiry"""
     expiry = datetime.now() + expiry
     data.update({"exp": expiry})
-    jwt_token = jwt.encode(data, key=SECRET_KEYWORD, algorithm=[ALGORITHM])
+    jwt_token = jwt.encode(data, key=SECRET_KEYWORD, algorithm=ALGORITHM)
     return Token(access_token=jwt_token)
 
 def verify_token(token:Annotated[str,Depends(oauth2)]):
